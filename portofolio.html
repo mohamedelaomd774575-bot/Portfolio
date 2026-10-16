@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمد خالد | Mohamed Khaled</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#090c11;
+    --bg-2:#0d1119;
+    --surface:#121722;
+    --surface-2:#171e2b;
+    --border:rgba(255,255,255,0.08);
+    --border-soft:rgba(255,255,255,0.05);
+    --mint:#00e6a4;
+    --mint-dim:#00e6a433;
+    --blue:#5b8cff;
+    --text:#eef2f7;
+    --muted:#8b96a8;
+    --muted-2:#5f6b7d;
+    --radius:16px;
+    --font-display:'Cairo', sans-serif;
+    --font-body:'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(91,140,255,0.10), transparent 60%),
+      radial-gradient(700px 500px at -10% 20%, rgba(0,230,164,0.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.7;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  #bg-net{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    display:block;
+    pointer-events:none;
+    opacity:.55;
+  }
+
+  nav, header.hero, section, footer{
+    position:relative;
+    z-index:1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #bg-net{display:none;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+  section{max-width:900px;margin:0 auto;padding:90px 24px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    color:var(--mint);
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:14px;
+    direction:ltr;
+    justify-content:flex-end;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--mint);}
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(24px,3.4vw,32px);
+    color:#fff;
+    margin-bottom:36px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;right:0;left:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    backdrop-filter:blur(14px);
+    background:rgba(9,12,17,0.55);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-logo{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:15px;
+    color:var(--mint);
+    display:flex;align-items:center;gap:8px;
+  }
+  .nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint);}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted);}
+  .nav-links a{transition:color .2s ease;}
+  .nav-links a:hover{color:#fff;}
+  .nav-cta{
+    font-family:var(--font-mono);
+    font-size:13px;
+    padding:8px 16px;
+    border:1px solid var(--mint-dim);
+    border-radius:999px;
+    color:var(--mint);
+    transition:all .2s ease;
+  }
+  .nav-cta:hover{background:var(--mint-dim);}
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    max-width:1080px;margin:0 auto;
+    padding:150px 24px 80px;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-photo{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .photo-ring{
+    position:relative;
+    width:230px;height:230px;
+    border-radius:50%;
+    padding:4px;
+    background:conic-gradient(from 180deg, var(--mint), var(--blue), var(--mint));
+    animation:spin 8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .photo-ring .photo-inner{
+    width:100%;height:100%;border-radius:50%;
+    overflow:hidden;
+    background:var(--bg-2);
+    animation:spin-counter 8s linear infinite;
+  }
+  @keyframes spin-counter{to{transform:rotate(-360deg);}}
+  .photo-ring img{
+    width:100%;height:100%;object-fit:cover;object-position:50% 18%;
+    filter:saturate(1.05) contrast(1.05);
+  }
+  .status-chip{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--mint);
+    display:flex;align-items:center;gap:7px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    padding:6px 14px;border-radius:999px;
+  }
+  .status-chip .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--mint);
+    box-shadow:0 0 0 0 var(--mint-dim);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(0,230,164,.5);}
+    70%{box-shadow:0 0 0 8px rgba(0,230,164,0);}
+    100%{box-shadow:0 0 0 0 rgba(0,230,164,0);}
+  }
+
+  .hero-text h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(36px,5.4vw,54px);
+    color:#fff;
+    letter-spacing:-0.01em;
+    margin-bottom:6px;
+  }
+  .hero-text .role{
+    font-size:17px;color:var(--muted);
+    margin-bottom:26px;
+  }
+  .hero-text .role strong{color:var(--blue);font-weight:600;}
+
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:28px;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,.6);
+  }
+  .terminal-bar{
+    display:flex;gap:7px;
+    padding:10px 14px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .terminal-bar span{width:10px;height:10px;border-radius:50%;background:#3a4252;}
+  .terminal-bar span:nth-child(1){background:#ff5f57;}
+  .terminal-bar span:nth-child(2){background:#febc2e;}
+  .terminal-bar span:nth-child(3){background:#28c840;}
+  .terminal-body{
+    padding:18px 20px;
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    direction:ltr;
+    text-align:left;
+    color:#c7d0dd;
+    min-height:64px;
+  }
+  .terminal-body .prompt{color:var(--mint);}
+  .terminal-body .out{color:var(--muted);display:block;margin:2px 0 10px;}
+  .terminal-body .cursor{
+    display:inline-block;width:7px;height:14px;
+    background:var(--mint);
+    margin-inline-start:2px;
+    animation:blink 1s step-end infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .cursor,.pulse,.photo-ring,.photo-ring .photo-inner{animation:none;}
+  }
+
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;
+    border-radius:10px;
+    font-weight:600;font-size:14.5px;
+    transition:all .2s ease;
+  }
+  .btn.primary{
+    background:var(--mint);color:#04140f;
+    box-shadow:0 10px 24px -8px var(--mint-dim);
+  }
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px var(--mint-dim);}
+  .btn.ghost{
+    border:1px solid var(--border);color:var(--text);background:var(--surface);
+  }
+  .btn.ghost:hover{border-color:var(--blue);color:var(--blue);}
+
+  @media (max-width:800px){
+    header.hero{grid-template-columns:1fr;text-align:center;padding-top:130px;}
+    .eyebrow{justify-content:center;}
+    .hero-actions{justify-content:center;}
+    .terminal-body{text-align:left;}
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
+  .about-text p{color:var(--muted);font-size:15.5px;margin-bottom:16px;}
+  .about-text p:last-child{margin-bottom:0;}
+  .fact-list{display:flex;flex-direction:column;gap:14px;}
+  .fact{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:16px 18px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .fact i{color:var(--mint);font-size:16px;width:20px;text-align:center;}
+  .fact span{font-size:14px;color:var(--text);}
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  }
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px 14px;
+    text-align:center;
+    transition:transform .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .skill-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--mint-dim);
+    background:var(--surface-2);
+  }
+  .skill-card i{font-size:26px;display:block;margin-bottom:12px;}
+  .skill-card .name{font-weight:700;font-size:14.5px;color:#fff;display:block;margin-bottom:4px;}
+  .skill-card .role{font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:.04em;direction:ltr;display:block;}
+  @media (max-width:640px){ .skills-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- PROJECTS ---------- */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .project-card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(500px 200px at 100% 0%, rgba(0,230,164,.08), transparent 60%);
+    pointer-events:none;
+  }
+  .project-card:hover{border-color:var(--mint-dim);transform:translateY(-3px);}
+  .project-card .tag{
+    font-family:var(--font-mono);font-size:11px;color:var(--mint);
+    letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:block;direction:ltr;text-align:right;
+  }
+  .project-card h3{font-family:var(--font-display);font-size:21px;color:#fff;margin-bottom:8px;}
+  .project-card p{color:var(--muted);font-size:14.5px;max-width:480px;}
+  .project-card .stack{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .project-card .stack span{
+    font-family:var(--font-mono);font-size:11px;color:var(--muted);
+    border:1px solid var(--border);padding:4px 10px;border-radius:999px;
+  }
+  .project-arrow{
+    flex-shrink:0;
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--border);color:var(--mint);
+    transition:all .25s ease;
+  }
+  .project-card:hover .project-arrow{background:var(--mint);color:#04140f;transform:scale(1.08) rotate(45deg);}
+  @media (max-width:640px){ .project-card{flex-direction:column;align-items:flex-start;} }
+
+  /* ---------- COURSES ---------- */
+  .courses-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  }
+  .course-card{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .course-card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(420px 180px at 0% 0%, rgba(91,140,255,.10), transparent 60%);
+    pointer-events:none;
+  }
+  .course-card:hover{border-color:var(--mint-dim);transform:translateY(-3px);}
+  .course-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;}
+  .course-icon{
+    width:46px;height:46px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--surface-2);border:1px solid var(--border);
+    color:var(--blue);font-size:19px;flex-shrink:0;
+  }
+  .soon-badge{
+    font-family:var(--font-mono);
+    font-size:10.5px;letter-spacing:.06em;
+    color:var(--mint);
+    background:var(--mint-dim);
+    border:1px solid var(--mint-dim);
+    padding:5px 11px;border-radius:999px;
+    display:flex;align-items:center;gap:6px;
+    white-space:nowrap;
+  }
+  .soon-badge .pulse{
+    width:6px;height:6px;border-radius:50%;background:var(--mint);
+    animation:pulse 2s infinite;
+  }
+  .course-card h3{font-family:var(--font-display);font-size:19px;color:#fff;margin-bottom:6px;}
+  .course-card .sub{font-family:var(--font-mono);font-size:11.5px;color:var(--muted-2);direction:ltr;text-align:right;display:block;margin-bottom:12px;}
+  .course-card p{color:var(--muted);font-size:14px;margin-bottom:16px;}
+  .course-progress{
+    height:6px;border-radius:999px;
+    background:var(--surface-2);
+    border:1px solid var(--border-soft);
+    overflow:hidden;
+  }
+  .course-progress span{
+    display:block;height:100%;border-radius:999px;
+    background:linear-gradient(90deg, var(--mint), var(--blue));
+  }
+  .course-note{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:10px;
+    font-family:var(--font-mono);font-size:11px;color:var(--muted-2);
+    direction:ltr;
+  }
+  .notify-strip{
+    grid-column:1 / -1;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px 24px;
+  }
+  .notify-strip p{color:var(--muted);font-size:14px;}
+  .notify-strip strong{color:#fff;}
+  @media (max-width:640px){ .courses-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .contact-card{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:18px 20px;
+    transition:all .25s ease;
+  }
+  .contact-card:hover{border-color:var(--mint-dim);background:var(--surface-2);transform:translateY(-2px);}
+  .contact-left{display:flex;align-items:center;gap:14px;}
+  .contact-left i{font-size:19px;}
+  .contact-left .label{font-weight:700;font-size:14.5px;color:#fff;display:block;}
+  .contact-left .sub{font-family:var(--font-mono);font-size:11px;color:var(--muted-2);direction:ltr;display:block;}
+  .contact-card .fa-arrow-up-left{font-size:12px;color:var(--muted-2);}
+  @media (max-width:640px){ .contact-grid{grid-template-columns:1fr;} }
+
+  footer{
+    border-top:1px solid var(--border-soft);
+    padding:32px 24px 40px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--muted-2);
+  }
+  footer .sig{color:var(--mint);}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<canvas id="bg-net"></canvas>
+
+<nav>
+  <div class="nav-logo"><span class="dot"></span> Mohamed Khaled </div>
+  <div class="nav-links">
+    <a href="#about">نبذة</a>
+    <a href="#skills">المهارات</a>
+    <a href="#projects">المشاريع</a>
+    <a href="#courses">الكورسات</a>
+    <a href="#contact">تواصل</a>
+  </div>
+  <a class="nav-cta" href="https://wa.me/201201641980">تواصل معي</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-photo">
+    <div class="photo-ring">
+      <div class="photo-inner">
+        <img src="WhatsApp Image 2026-08-07 at 7.52.35 PM.jpeg" alt="محمد خالد">
+      </div>
+    </div>
+    <div class="status-chip"><span class="pulse"></span> متاح لفرص عمل جديدة</div>
+  </div>
+
+  <div class="hero-text">
+    <p class="eyebrow">dev.profile</p>
+    <h1>Mohamed Khaled</h1>
+    <p class="role">مطوّر ويب ومصمّم منصات رقمية — أبني واجهات ونظم <strong>نظيفة وسريعة</strong></p>
+
+    <div class="terminal">
+      <div class="terminal-bar"><span></span><span></span><span></span></div>
+      <div class="terminal-body">
+        <span class="prompt">Mr_Ro0o0T@</span><span style="color:#5f6b7d">:~$</span> <span id="typed"></span><span class="cursor"></span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn primary" href="mailto:mooocndvg@gmail.com"><i class="fa-solid fa-envelope"></i> تواصل معي</a>
+      <a class="btn ghost" href="cv.pdf" download><i class="fa-solid fa-download"></i> تحميل السيرة الذاتية</a>
+    </div>
+</header>
+
+<section id="about" class="reveal">
+  <p class="eyebrow">about</p>
+  <h2 class="section-title">نبذة عني</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>مطوّر ويب شغوف ببناء تجارب رقمية بسيطة وفعّالة، أعمل على تحويل الأفكار إلى منصات وواجهات تعمل بسلاسة من الفكرة الأولى وحتى التشغيل الفعلي.</p>
+      <p>أهتم بالتفاصيل الصغيرة في الكود كما أهتم بشكل الواجهة، وأحرص على أن يكون كل مشروع أعمل عليه قابلًا للتطوير وسهل الاستخدام.</p>
+    </div>
+    <div class="fact-list">
+      <div class="fact"><i class="fa-solid fa-code"></i><span>تطوير واجهات وأنظمة ويب</span></div>
+      <div class="fact"><i class="fa-solid fa-database"></i><span>بناء قواعد بيانات وربطها بـ Supabase</span></div>
+      <div class="fact"><i class="fa-brands fa-linux"></i><span>مرتاح في بيئة Linux</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <p class="eyebrow">skills</p>
+  <h2 class="section-title">المهارات التقنية</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><i class="fa-brands fa-html5" style="color:#E34F26;"></i><span class="name">HTML</span><span class="role">markup</span></div>
+    <div class="skill-card"><i class="fa-brands fa-css3-alt" style="color:#1572B6;"></i><span class="name">CSS</span><span class="role">styling</span></div>
+    <div class="skill-card"><i class="fa-brands fa-js" style="color:#F7DF1E;"></i><span class="name">JavaScript</span><span class="role">interaction</span></div>
+    <div class="skill-card"><i class="fa-brands fa-python" style="color:#3776AB;"></i><span class="name">Python</span><span class="role">scripting</span></div>
+    <div class="skill-card"><i class="fa-solid fa-database" style="color:#3ECF8E;"></i><span class="name">Supabase</span><span class="role">backend</span></div>
+    <div class="skill-card"><i class="fa-brands fa-linux" style="color:#f5f5f5;"></i><span class="name">Linux</span><span class="role">systems</span></div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <p class="eyebrow">projects</p>
+  <h2 class="section-title">المشاريع</h2>
+  <a class="project-card" href="https://the-son-of-the-leader-academy.github.io/The-Son-Of-The-Leader" target="_blank">
+    <div>
+      <span class="tag">featured</span>
+      <h3>منصة ابن القائد</h3>
+      <p>منصة ويب تعليمية تم تصميمها وبرمجتها بالكامل، من الواجهة حتى تجربة الاستخدام.</p>
+      <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+    </div>
+    <div class="project-arrow"><i class="fa-solid fa-arrow-up-left"></i></div>
+  </a>
+</section>
+
+<section id="courses" class="reveal">
+  <p class="eyebrow"> my courses</p>
+  <h2 class="section-title">كورساتي</h2>
+  <div class="courses-grid">
+
+    <div class="course-card">
+      <div class="course-top">
+        <div class="course-icon"><i class="fa-solid fa-network-wired"></i></div>
+        <span class="soon-badge"><span class="pulse"></span> قريبًا</span>
+      </div>
+      <h3>CompTIA A+</h3>
+      <span class="sub">it fundamentals · hardware &amp; support</span>
+      <div class="course-progress"><span style="width:35%"></span></div>
+      <div class="course-note"><span>preparing content</span><span>--%</span></div>
+    </div>
+
+    
+
+
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <p class="eyebrow">contact</p>
+  <h2 class="section-title">تواصل معي</h2>
+  <div class="contact-grid">
+    <a class="contact-card" href="https://wa.me/201201641980" target="_blank">
+      <div class="contact-left"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i><span><span class="label">واتساب</span><span class="sub">wa.me</span></span></div>
+      <i class="fa-solid fa-arrow-up-left"></i>
+    </a>
+    <a class="contact-card" href="https://t.me/+201201641980" target="_blank">
+      <div class="contact-left"><i class="fa-brands fa-telegram" style="color:#0088cc;"></i><span><span class="label">تليجرام</span><span class="sub">t.me</span></span></div>
+      <i class="fa-solid fa-arrow-up-left"></i>
+    </a>
+    <a class="contact-card" href="https://www.instagram.com/mo7amed36404?igsh=M3Rxd3Y0ODR5ejRj" target="_blank">
+      <div class="contact-left"><i class="fa-brands fa-instagram" style="color:#E4405F;"></i><span><span class="label">إنستجرام</span><span class="sub">instagram</span></span></div>
+      <i class="fa-solid fa-arrow-up-left"></i>
+    </a>
+    <a class="contact-card" href="https://www.facebook.com/share/17LynwkPV4/" target="_blank">
+      <div class="contact-left"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i><span><span class="label">فيسبوك</span><span class="sub">facebook</span></span></div>
+      <i class="fa-solid fa-arrow-up-left"></i>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="sig">&lt;/&gt;</span> designed &amp; built by Mohamed Khaled — &copy; 2026
+</footer>
+
+<script>
+  // typewriter in hero terminal
+  const el = document.getElementById('typed');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lines = [
+    { cmd: "whoami", out: "→ محمد خالد · مطوّر ويب" },
+    { cmd: "cat stack.txt", out: "→ HTML · CSS · JS · Python · Supabase · Linux" }
+  ];
+
+  if(reduced){
+    el.textContent = lines[0].cmd;
+  } else {
+    let li = 0;
+    function typeLine(){
+      const line = lines[li];
+      let ci = 0;
+      el.textContent = "";
+      const typer = setInterval(()=>{
+        el.textContent += line.cmd[ci];
+        ci++;
+        if(ci === line.cmd.length){
+          clearInterval(typer);
+          setTimeout(()=>{
+            el.innerHTML = line.cmd + '<br><span class="out">' + line.out + '</span>';
+            setTimeout(()=>{
+              li = (li+1) % lines.length;
+              typeLine();
+            }, 2200);
+          }, 350);
+        }
+      }, 65);
+    }
+    typeLine();
+  }
+
+  // animated network background (particles + connecting lines)
+  (function(){
+    const canvas = document.getElementById('bg-net');
+    if(!canvas) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    let particles = [];
+
+    const MINT = '0,230,164';
+    const BLUE = '91,140,255';
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth = window.innerWidth;
+      h = canvas.clientHeight = document.documentElement.scrollHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const count = Math.min(110, Math.floor((w * h) / 16000));
+      particles = Array.from({length: count}, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.6,
+        c: Math.random() > 0.6 ? BLUE : MINT
+      }));
+    }
+
+    function step(){
+      ctx.clearRect(0, 0, w, h);
+
+      for(const p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x < 0 || p.x > w) p.vx *= -1;
+        if(p.y < 0 || p.y > h) p.vy *= -1;
+      }
+
+      const linkDist = 130;
+      for(let i = 0; i < particles.length; i++){
+        for(let j = i + 1; j < particles.length; j++){
+          const a = particles[i], b = particles[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < linkDist){
+            const alpha = (1 - dist / linkDist) * 0.18;
+            ctx.strokeStyle = `rgba(${MINT},${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for(const p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.c},0.75)`;
+        ctx.fill();
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 200);
+    });
+
+    resize();
+    requestAnimationFrame(step);
+  })();
+
+  // scroll reveal
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
